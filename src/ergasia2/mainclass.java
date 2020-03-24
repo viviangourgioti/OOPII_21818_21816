@@ -7,13 +7,18 @@ import java.util.Scanner;
 public class mainclass {
 	
 	public static String[] readString()throws MySpecialException,Exception{
+		@SuppressWarnings("resource")
 		Scanner in=new Scanner(System.in);
-		if(in.hasNextLine()) {
-			String[] namesList = in.nextLine().split(",");//έτσι διαχωρίζω σε δυο string την πόλη και την χώρα
-			return namesList;
-			
-		}else if(in.hasNext() && in.next().equals("done")) {
-			throw new MySpecialException();		
+		if(in.hasNext()) {
+			String input = in.next();
+			if(!(input.toLowerCase()).equals("done")){
+				System.out.print("Input more cities: ");
+				String[] namesList = in.nextLine().split(",");//έτσι διαχωρίζω σε δυο string την πόλη και την χώρα
+				return namesList;
+			}else{ 
+				System.out.println("You entered done. Input finished,");
+				throw new MySpecialException();
+			}
 		}else {
 			throw new Exception("Not a String");
 		}
@@ -135,7 +140,8 @@ public class mainclass {
 		System.out.println("Please give some names of cities followed by comma(,) and then the first 2 letters of the country(eg. Athens,gr)");
 		System.out.println("When you are done,type the word done.");
 		ArrayList<City> cities =new ArrayList<City>();
-		/*while(!input.equals("done")) {
+		String input="";
+/*		while(!input.equals("done")) {
 			try {
 				String citycountry[]=readString();
 				City c=new City();	
@@ -165,7 +171,7 @@ public class mainclass {
 				System.err.println(ex.getMessage());
 			}
 		}
-		
+		System.out.println("The cities input finished.");
 		/*City c=new City();	
 		c.gemisma(c,part1, part2);
 		System.out.println(c);
