@@ -28,7 +28,7 @@ public class OpenData {
 			System.out.println("The term "+criterions[i]+" occurs "+countCriterionfCity(extracts,criterions[i]) + " number of times.");		
 		}
 }
- public static String article(String city, String country, String appid) throws  IOException {
+ public static String article(String city, String country) throws  IOException {
 	 ObjectMapper mapper = new ObjectMapper(); 
 	 MediaWiki mediaWiki_obj =  mapper.readValue(new URL("https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles="+city+"&format=json&formatversion=2"),MediaWiki.class);
 	 String extracts= mediaWiki_obj.getQuery().getPages().get(0).getExtract();

@@ -105,22 +105,26 @@ public class City {
 	}
 	public City() {};
 	
-	public void gemisma( City c,String cityname,String country) throws IOException {
-		OpenData.RetrieveData(cityname, country,"eec6890cb4afa0e897cce002c69e11f0");
-		String article=OpenData.article(cityname, country,"eec6890cb4afa0e897cce002c69e11f0" );
-		//System.out.println(article);
+	public static City gemisma( String cityname,String country) throws IOException  {
+		City c =new City();
+		String article = OpenData.article(cityname, country);
 		c.setName(cityname);
 		c.setMuseums(OpenData.countCriterionfCity(article,"museum"));
-		c.setCafesRestaurantsBars(OpenData.countCriterionfCity(article,"cafes"));
+		c.setCafesRestaurantsBars(OpenData.countCriterionfCity(article,"caf"));
 		c.setSkyscrapers(OpenData.countCriterionfCity(article,"skyscrapers"));
 		c.setGalleries(OpenData.countCriterionfCity(article, "galleries"));
 		c.setParks(OpenData.countCriterionfCity(article, "parks"));
 		c.setSea(OpenData.countCriterionfCity(article, "sea"));
 		c.setShops(OpenData.countCriterionfCity(article,"shops"));
-		c.setLon(OpenData.lon(cityname, country,"eec6890cb4afa0e897cce002c69e11f0"));
-		c.setLat(OpenData.lat(cityname, country,"eec6890cb4afa0e897cce002c69e11f0" ));
-		c.setWeather(OpenData.weather(cityname, country,"eec6890cb4afa0e897cce002c69e11f0"));
-
+		try {
+			c.setLon(OpenData.lon(cityname, country,"eec6890cb4afa0e897cce002c69e11f0"));
+			c.setLat(OpenData.lat(cityname, country,"eec6890cb4afa0e897cce002c69e11f0" ));
+			c.setWeather(OpenData.weather(cityname, country,"eec6890cb4afa0e897cce002c69e11f0"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return c;
 	}
 		
 	

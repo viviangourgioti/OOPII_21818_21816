@@ -13,7 +13,8 @@ public class mainclass {
 			String input = in.next();
 			if(!(input.toLowerCase()).equals("done")){
 				System.out.print("Input more cities: ");
-				String[] namesList = in.nextLine().split(",");//έτσι διαχωρίζω σε δυο string την πόλη και την χώρα
+				String[] namesList = input.split(",");//έτσι διαχωρίζω σε δυο string την πόλη και την χώρα
+				//System.out.println("all ok.");
 				return namesList;
 			}else{ 
 				System.out.println("You entered done. Input finished,");
@@ -139,7 +140,7 @@ public class mainclass {
 		
 		System.out.println("Please give some names of cities followed by comma(,) and then the first 2 letters of the country(eg. Athens,gr)");
 		System.out.println("When you are done,type the word done.");
-		ArrayList<City> cities =new ArrayList<City>();
+		
 		String input="";
 /*		while(!input.equals("done")) {
 			try {
@@ -157,13 +158,12 @@ public class mainclass {
 				System.err.println(ex.getMessage());
 			}
 		}*/
-		
+		ArrayList<City> cities =new ArrayList<City>();
+		 
 		while(true) {
 			try {
 				String citycountry[]=readString();
-				City c=new City();
-				c.gemisma(c, citycountry[0], citycountry[1]);
-				System.out.println(c);
+				City c=City.gemisma(citycountry[0], citycountry[1]);
 				cities.add(c);
 			}catch(MySpecialException ex) {
 				break;
@@ -171,22 +171,22 @@ public class mainclass {
 				System.err.println(ex.getMessage());
 			}
 		}
-		System.out.println("The cities input finished.");
+		
+		for (int i=0; i<cities.size(); i++) {
+			System.out.println("City: "+cities.get(i).getName()+" lat:"+cities.get(i).getLat()+" lon:"+cities.get(i).getLon()+" cafes:"+cities.get(i).getCafesRestaurantsBars()+" museums:"+cities.get(i).getMuseums());
+		}
+		
 		/*City c=new City();	
 		c.gemisma(c,part1, part2);
 		System.out.println(c);
 		cities.add(c);
-			*/
-		
-		
+			*/	
 		//εστω οι innput πολεις μάζι με τα χαρακτηριστικά
 		//το γέμισμα των city θα γίνεται με τη χρήση μιας μεθόδου στη κλάση City
 		City c1=new City("Athens",12,11,100,19,8,7,30,"sun",20.2,5.3);
 		City c2=new City("New York",0,72,5,4,11,60,90,"rain",7.8,88.9);
 		City c3=new City("Karpenissi",1,5,0,1,9,0,32,"snow",3.7,123.65);
-		
-		
-		
+
 		//σύγκρηση κριτηρίων που επέλεξε ο χρήστης με τις πόλεις που επέλεξε
 		double s1=t1.Similarity(c1);
 		System.out.println("Similarity for c1 is:"+s1);
