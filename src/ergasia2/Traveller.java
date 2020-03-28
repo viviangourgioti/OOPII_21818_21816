@@ -113,7 +113,10 @@ public class Traveller {
 				+ ", currentlon=" + currentlon + "]";
 	}
 
-	static int numberOfTravellers=0;{
+	public Traveller() {}
+	
+	//ξεκινάω με -3 επειδή στη main έχω αρχικοποιήσει 3 αντικείμενα τύπου traveller
+	static int numberOfTravellers=-3;{
 		numberOfTravellers+=1;
 	}
 	
@@ -163,6 +166,7 @@ public class Traveller {
 		
 	}
 	
+	//overload
 	void CompareCities(ArrayList<City> cities,boolean rain) {
 		if(rain==true) {
 			for(City c:cities) {
