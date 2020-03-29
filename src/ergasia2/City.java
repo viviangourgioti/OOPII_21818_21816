@@ -103,7 +103,7 @@ public class City {
 	}
 	
 	public City(String name, int museums, int cafesRestaurantsBars, int skyscrapers, int galleries, int parks, int sea,
-			int shops, int hotels, String weather, double lat, double lon) {
+			int shops, int landmarks, String weather, double lat, double lon) {
 		super();
 		this.name = name;
 		this.museums = museums;
@@ -113,7 +113,7 @@ public class City {
 		this.parks = parks;
 		this.sea = sea;
 		this.shops = shops;
-		this.landmarks = hotels;
+		this.landmarks = landmarks;
 		this.weather = weather;
 		this.lat = lat;
 		this.lon = lon;

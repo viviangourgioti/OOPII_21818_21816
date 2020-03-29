@@ -4,22 +4,26 @@ public class Tourist extends Traveller {
 
 	private int landmarks;
 
-	public int getHotels() {
+	public int getLandmarks() {
 		return landmarks;
 	}
 
-	public void setHotels(int hotels) {
-		this.landmarks = hotels;
+
+	public void setLandmarks(int landmarks) {
+		this.landmarks = landmarks;
 	}
+
+
+
 	
 
 	public Tourist(String name, int age, int museums, int cafesRestaurantsBars, int skyscrapers, int galleries,
-			int parks, int sea, int shops, String weather, double currentlat, double currentlon, int hotels) {
+			int parks, int sea, int shops, String weather, double currentlat, double currentlon, int landmarks) {
 		super(name, age, museums, cafesRestaurantsBars, skyscrapers, galleries, parks, sea, shops, weather, currentlat,
 				currentlon);
-		this.landmarks = hotels;
+		this.landmarks = landmarks;
 	}
-	
+
 
 	@Override
 	public String toString() {
