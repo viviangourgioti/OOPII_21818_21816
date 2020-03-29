@@ -23,7 +23,7 @@ public class Tourist extends Traveller {
 
 	@Override
 	public String toString() {
-		return "Tourist [hotels=" + landmarks + ", name=" + name + ", age=" + age + ", museums=" + museums
+		return "Tourist [landmarks=" + landmarks + ", name=" + name + ", age=" + age + ", museums=" + museums
 				+ ", cafesRestaurantsBars=" + cafesRestaurantsBars + ", skyscrapers=" + skyscrapers + ", galleries="
 				+ galleries + ", parks=" + parks + ", sea=" + sea + ", shops=" + shops + ", weather=" + weather
 				+ ", currentlat=" + currentlat + ", currentlon=" + currentlon + "]";
@@ -35,35 +35,42 @@ public class Tourist extends Traveller {
 	//override	
 	double Similarity(City c) {
 		int count=0;
-		
+		int sum=0;
 		if(museums==1 && c.getMuseums()!=0) {
 			count++;
+			sum=sum+c.getMuseums();
 		}	
 		if(cafesRestaurantsBars==1 && c.getCafesRestaurantsBars()!=0){
 			count++;
+			sum=sum+c.getCafesRestaurantsBars();
 		}
 		if(skyscrapers==1 && c.getSkyscrapers()!=0){
 			count++;
+			sum=sum+c.getSkyscrapers();
 		}
 		if(galleries==1 && c.getGalleries()!=0){
 			count++;
+			sum=sum+c.getGalleries();
 		}
 		if(parks==1 && c.getParks()!=0){
 			count++;
+			sum=sum+c.getParks();
 		}
 		if(sea==1 && c.getSea()!=0){
 			count++;
+			sum=sum+c.getSea();
 		}
 		if(shops==1 && c.getShops()!=0){
 			count++;
+			sum=sum+c.getShops();
 		}
 		if(weather==c.getWeather()) {
 			count++;
 		}
 		if(landmarks==1 && c.getLandmarks()!=0) {
 			count++;
+			sum=sum+c.getLandmarks();
 		}
-		int sum=c.getCafesRestaurantsBars()+c.getGalleries()+c.getMuseums()+c.getParks()+c.getSea()+c.getShops()+c.getSkyscrapers()+c.getLandmarks();
 		double similar=(count/(double)8)*sum;
 		return similar;
 	}

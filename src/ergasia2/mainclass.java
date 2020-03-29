@@ -124,7 +124,7 @@ public class mainclass {
 		System.out.println("To add a criterion press 1 or else 0");
 		int landmarks = 0;
 		if(answer==2) {//γιατι μόνο ο tourist διλέγει αν θέλει hotel
-			System.out.println("Would you like the city to have hotels?(0/1)");
+			System.out.println("Would you like the city to have landmarks?(0/1)");
 			
 			do {
 			    System.out.println("Please enter 0 or 1!");

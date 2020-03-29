@@ -98,7 +98,7 @@ public class City {
 	public String toString() {
 		return "City [name=" + name + ", museums=" + museums + ", cafesRestaurantsBars=" + cafesRestaurantsBars
 				+ ", skyscrapers=" + skyscrapers + ", galleries=" + galleries + ", parks=" + parks + ", sea=" + sea
-				+ ", shops=" + shops + ", weather=" + weather + ", lat=" + lat + ", lon=" + lon + ", hotels=" + landmarks
+				+ ", shops=" + shops + ", weather=" + weather + ", lat=" + lat + ", lon=" + lon + ", landmarks=" + landmarks
 				+ "]";
 	}
 	
