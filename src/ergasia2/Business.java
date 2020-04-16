@@ -1,19 +1,21 @@
 package ergasia2;
 
+@SuppressWarnings("serial")
 public class Business extends Traveller{
 
+
+
 	public Business(String name, int age, int museums, int cafesRestaurantsBars, int skyscrapers, int galleries,
-			int parks, int sea, int shops, String weather, double currentlat, double currentlon) {
+			int parks, int sea, int shops, String weather, double currentlat, double currentlon,
+			String recommendedCity) {
 		super(name, age, museums, cafesRestaurantsBars, skyscrapers, galleries, parks, sea, shops, weather, currentlat,
-				currentlon);
+				currentlon, recommendedCity);
+		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
+
 	//empty constructor
 	public Business() {}
 
-	
 	//override
 	double Similarity(City c) {
 		if ((currentlat == c.getLat()) && (currentlon== c.getLon())) {

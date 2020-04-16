@@ -1,8 +1,11 @@
 package ergasia2;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Traveller {
+@SuppressWarnings("serial")
+public class Traveller implements Comparable<Traveller>,Serializable{
+
 	protected String name;
 	protected int age;
 	protected int museums;
@@ -15,6 +18,13 @@ public class Traveller {
 	protected String weather;
 	protected double currentlat;
 	protected double currentlon;
+	protected String RecommendedCity;
+	
+    public int compareTo(Traveller t) 
+    { 
+        return this.age - t.age; 
+    }
+	
 	public String getName() {
 		return name;
 	}
@@ -87,10 +97,19 @@ public class Traveller {
 	public void setCurrentlon(double currentlon) {
 		this.currentlon = currentlon;
 	}
+
+	public String getRecommendedCity() {
+		return RecommendedCity;
+	}
+	public void setRecommendedCity(String recommendedCity) {
+		RecommendedCity = recommendedCity;
+	}
 	
+
 	public Traveller(String name, int age, int museums, int cafesRestaurantsBars, int skyscrapers, int galleries,
-			int parks, int sea, int shops, String weather, double currentlat, double currentlon) {
-		//super();
+			int parks, int sea, int shops, String weather, double currentlat, double currentlon,
+			String recommendedCity) {
+		super();
 		this.name = name;
 		this.age = age;
 		this.museums = museums;
@@ -103,6 +122,7 @@ public class Traveller {
 		this.weather = weather;
 		this.currentlat = currentlat;
 		this.currentlon = currentlon;
+		this.RecommendedCity = recommendedCity;
 	}
 	
 	@Override
@@ -110,9 +130,8 @@ public class Traveller {
 		return "Traveller [name=" + name + ", age=" + age + ", museums=" + museums + ", cafesRestaurantsBars="
 				+ cafesRestaurantsBars + ", skyscrapers=" + skyscrapers + ", galleries=" + galleries + ", parks="
 				+ parks + ", sea=" + sea + ", shops=" + shops + ", weather=" + weather + ", currentlat=" + currentlat
-				+ ", currentlon=" + currentlon + "]";
+				+ ", currentlon=" + currentlon + ", RecommendedCity=" + RecommendedCity + "]";
 	}
-
 	public Traveller() {}
 	
 	//ξεκινάω με -3 επειδή στη main έχω αρχικοποιήσει 3 αντικείμενα τύπου traveller
@@ -152,17 +171,15 @@ public class Traveller {
 	}
 	
 	City CompareCities(ArrayList<City> cities) {
-		double max=0;
-		City maxcity = null;
-		for(City c:cities) {
-			Similarity(c);
-			if(Similarity(c)>=max) {
-				max=Similarity(c);
-				maxcity=c;
+		double max=Similarity(cities.get(0));
+		int maxcity =-1;
+		for(int i=0;i<cities.size();i++) {
+			if(Similarity(cities.get(i))>=max) {
+				max=Similarity(cities.get(i));
+				maxcity=i;
 			}
 		}
-		System.out.println("Best city:"+maxcity);
-		return maxcity;
+		return cities.get(maxcity);
 		
 	}
 	
@@ -179,5 +196,31 @@ public class Traveller {
 			System.out.println(cities);
 		}
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Traveller other = (Traveller) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
+	
 	
 }

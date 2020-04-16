@@ -1,5 +1,6 @@
 package ergasia2;
 
+@SuppressWarnings("serial")
 public class Tourist extends Traveller {
 
 	private int landmarks;
@@ -13,25 +14,22 @@ public class Tourist extends Traveller {
 		this.landmarks = landmarks;
 	}
 
-
-
-	
-
 	public Tourist(String name, int age, int museums, int cafesRestaurantsBars, int skyscrapers, int galleries,
-			int parks, int sea, int shops, String weather, double currentlat, double currentlon, int landmarks) {
+			int parks, int sea, int shops, String weather, double currentlat, double currentlon,String RecommendedCity ,int landmarks) {
 		super(name, age, museums, cafesRestaurantsBars, skyscrapers, galleries, parks, sea, shops, weather, currentlat,
-				currentlon);
+				currentlon,RecommendedCity);
 		this.landmarks = landmarks;
 	}
-
 
 	@Override
 	public String toString() {
 		return "Tourist [landmarks=" + landmarks + ", name=" + name + ", age=" + age + ", museums=" + museums
 				+ ", cafesRestaurantsBars=" + cafesRestaurantsBars + ", skyscrapers=" + skyscrapers + ", galleries="
 				+ galleries + ", parks=" + parks + ", sea=" + sea + ", shops=" + shops + ", weather=" + weather
-				+ ", currentlat=" + currentlat + ", currentlon=" + currentlon + "]";
+				+ ", currentlat=" + currentlat + ", currentlon=" + currentlon + ", RecommendedCity=" + RecommendedCity
+				+ "]";
 	}
+
 
 	//empty constructor
 	public Tourist() {}
@@ -75,7 +73,7 @@ public class Tourist extends Traveller {
 			count++;
 			sum=sum+c.getLandmarks();
 		}
-		double similar=(count/(double)8)*sum;
+		double similar=(count/(double)9)*sum;
 		return similar;
 	}
 }

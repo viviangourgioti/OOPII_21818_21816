@@ -121,24 +121,6 @@ public class City {
 	//empty constructor για να μπορώ να αρχικοποιώ αντικείμενα city
 	public City() {}
 	
-	/*public void gemisma( City c,String cityname,String country) throws IOException {
-		OpenData.RetrieveData(cityname, country,"eec6890cb4afa0e897cce002c69e11f0");
-		String article=OpenData.article(cityname, country,"eec6890cb4afa0e897cce002c69e11f0" );
-		//System.out.println(article);
-		c.setName(cityname);
-		c.setMuseums(OpenData.countCriterionfCity(article,"museum"));
-		c.setCafesRestaurantsBars(OpenData.countCriterionfCity(article,"cafes"));
-		c.setSkyscrapers(OpenData.countCriterionfCity(article,"skyscrapers"));
-		c.setGalleries(OpenData.countCriterionfCity(article, "galleries"));
-		c.setParks(OpenData.countCriterionfCity(article, "parks"));
-		c.setSea(OpenData.countCriterionfCity(article, "sea"));
-		c.setShops(OpenData.countCriterionfCity(article,"shops"));
-		c.setLon(OpenData.lon(cityname, country,"eec6890cb4afa0e897cce002c69e11f0"));
-		c.setLat(OpenData.lat(cityname, country,"eec6890cb4afa0e897cce002c69e11f0" ));
-		c.setWeather(OpenData.weather(cityname, country,"eec6890cb4afa0e897cce002c69e11f0"));
-		
-
-	}*/
 	public static City gemisma( String cityname,String country) throws IOException  {
 		City c =new City();
 		String article = OpenData.article(cityname, country);
@@ -161,9 +143,29 @@ public class City {
 		}
 		return c;
 	}
-		
 	
-	
+    @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+    public boolean equals(Object o) { 
+  	  
+        if (o == this) { 
+            return true; 
+        } 
+
+        if (!(o instanceof City)) { 
+            return false; 
+        } 
+
+        City c = (City) o; 
+        return name.equals(c.name);
+
+    }
+
 	
 	
 }
