@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -72,8 +73,15 @@ public class mainclass {
 		
 		List<City> CityDup=new ArrayList<>();
 		ArrayList<City> AllCities =new ArrayList<City>();
+		try {
+			DataBase.DBconnection();
+			AllCities=DataBase.ReadData();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		ArrayList<Traveller> AllTravellers =new ArrayList<Traveller>();		
-		DataBase db=new DataBase();
 		
 		File f = new File("TravellersData");
 		if(f.exists()) {
@@ -81,9 +89,7 @@ public class mainclass {
 	        {
 	            FileInputStream fis = new FileInputStream("TravellersData");
 	            ObjectInputStream ois = new ObjectInputStream(fis);
-	 
 	            AllTravellers = (ArrayList) ois.readObject();
-	 
 	            ois.close();
 	            fis.close();
 	            System.out.println("Deserialization succeded");
@@ -91,7 +97,6 @@ public class mainclass {
 	            while(it.hasNext()) {
 	            	System.out.println(it.next());
 	            }*/
-	            		
 	        } 
 	        catch (IOException ioe) 
 	        {
@@ -138,11 +143,10 @@ public class mainclass {
 					        System.out.println("That's not a number!");
 					        sc.next(); // this is important!
 					    }
-					    answer = sc.nextInt();
-					    
+					    answer = sc.nextInt(); 
 					} while (!(answer==1 || answer==2 || answer==3));
 					sc.nextLine();
-					System.out.println("Hello!");
+					
 					System.out.println("Please enter your name.");
 					String name=sc.nextLine();
 					System.out.println("Please enter your age.");
@@ -175,6 +179,8 @@ public class mainclass {
 								cities.add(c);
 							}
 							AllCities.add(c);
+							DataBase.DBconnection();
+							DataBase.addDatatoDB(c.getName(),c.getMuseums(),c.getCafesRestaurantsBars(),c.getSkyscrapers(),c.getGalleries(),c.getParks(),c.getSea(),c.getShops(),c.getLandmarks(),c.getWeather(),c.getLat(),c.getLon());
 						}catch(MySpecialException ex) {
 							break;
 						}catch(Exception ex) {
@@ -196,7 +202,7 @@ public class mainclass {
 						System.out.println("Would you like the city to have landmarks?(0/1)");
 						landmarks=ele();
 					}
-				
+					
 					if(answer==1 || answer==2) {	
 						System.out.println("Would you like the city to have museums?(0/1)");
 						int museums=ele();
@@ -265,14 +271,7 @@ public class mainclass {
 							System.out.println(b.Similarity(x));
 						}
 					}
-				
-					//εστω οι input πολεις μάζι με τα χαρακτηριστικά(this is only for testing)
-					/*City c2=City.gemisma("milan","it");
-					City c3=City.gemisma("trikala","gr");
-					
-					cities.add(c2);
-					cities.add(c3);*/
-					
+
 					/*System.out.println("Checking the best city for you...");
 					if(answer==1) {
 						tr.CompareCities(cities);
@@ -282,7 +281,7 @@ public class mainclass {
 						b.CompareCities(cities);
 					}*/
 					
-					/*try {
+					try {
 						System.out.println("Would you like to skip cities with rain?(true/false)");
 						boolean rain = sc.nextBoolean();
 						if(answer==1) {	
@@ -294,7 +293,7 @@ public class mainclass {
 						}
 				    } catch (InputMismatchException e) {
 				           	System.out.println("Invalid input!");	           
-				    }*/
+				    }
 					
 				 /*//free ticket(ερώτημα 3),polymorphism
 					System.out.println("We want to give a free ticket for Madrid (c1)");
@@ -329,30 +328,23 @@ public class mainclass {
 					while(iterc.hasNext()) {
 						System.out.println(iterc.next());
 					}
-					DataBase.DBconnection();
-					/*while(iterc.hasNext()) {
-						DataBase.addDatatoDB(iterc.next().getName(),iterc.next().getMuseums(),iterc.next().getCafesRestaurantsBars(),iterc.next().getSkyscrapers(),iterc.next().getGalleries(),iterc.next().getParks(),iterc.next().getSea(),iterc.next().getShops(),iterc.next().getLandmarks(),iterc.next().getWeather(),iterc.next().getLat(),iterc.next().getLon());
-					}*/
-					
-					System.out.println("All travellers so far(unsorted):");
+
+					/*System.out.println("All travellers so far(unsorted):");
 					Iterator<Traveller> iter=AllTravellers.iterator();
 					while(iter.hasNext()) {
 						System.out.println(iter.next());
-					}
-					
+					}*/					
 					
 					//ταξινόμηση(με βάση την ηλικία) και αφαίρεση διπλοτύπων(ίδιο όνομα) του arraylist AllTravellers 
 					//δημιουργια λιστας χωρις διπλοτυπα
 					List<Traveller> listWithoutDuplicates = AllTravellers.stream().distinct().collect(Collectors.toList());
-					//ταξινόμηση
-					Collections.sort(listWithoutDuplicates);
+					Collections.sort(listWithoutDuplicates);//ταξινόμηση
 					System.out.println("Sorted Travellers without duplicates:");
 					Iterator<Traveller> dupiter=listWithoutDuplicates.iterator();
 					while(dupiter.hasNext()) {
 						System.out.println(dupiter.next());
-
 					}
-					
+					//serialization
 					try
 			        {
 			            FileOutputStream fos = new FileOutputStream("TravellersData");
@@ -361,13 +353,11 @@ public class mainclass {
 			            oos.close();
 			            fos.close();
 			            System.out.println("Serialazation succeded");
-			            
 			        } 
 			        catch (IOException ioe) 
 			        {
 			            ioe.printStackTrace();
 			        }
-					
 					
 					break;
 				case 2:

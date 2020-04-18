@@ -2,6 +2,9 @@ package ergasia2;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
+
+
 
 @SuppressWarnings("serial")
 public class Traveller implements Comparable<Traveller>,Serializable{
@@ -166,13 +169,13 @@ public class Traveller implements Comparable<Traveller>,Serializable{
 			count++;
 		}
 		double similar=count/(double)8;
-		//System.out.println("Similarity is:"+similar);
 		return similar;
 	}
 	
 	City CompareCities(ArrayList<City> cities) {
 		double max=Similarity(cities.get(0));
 		int maxcity =-1;
+
 		for(int i=0;i<cities.size();i++) {
 			if(Similarity(cities.get(i))>=max) {
 				max=Similarity(cities.get(i));

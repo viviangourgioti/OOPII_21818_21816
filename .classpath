@@ -12,6 +12,6 @@
 	<classpathentry kind="lib" path="/home/vivian/Downloads/jackson-annotations-2.9.8.jar"/>
 	<classpathentry kind="lib" path="/home/vivian/Downloads/jackson-core-2.9.8.jar"/>
 	<classpathentry kind="lib" path="/home/vivian/Downloads/jackson-databind-2.9.8.jar"/>
-	<classpathentry kind="lib" path="/home/vivian/Downloads/ojdbc14.jar"/>
+	<classpathentry kind="lib" path="/home/vivian/Downloads/OJDBC-Full/ojdbc6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
