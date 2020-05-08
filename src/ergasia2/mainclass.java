@@ -70,7 +70,7 @@ public class mainclass {
 	
 	public static void main(String args[])throws IOException {
 		Scanner sc = new Scanner(System.in);
-		
+
 		List<City> CityDup=new ArrayList<>();
 		ArrayList<City> AllCities =new ArrayList<City>();
 		try {
@@ -93,10 +93,6 @@ public class mainclass {
 	            ois.close();
 	            fis.close();
 	            System.out.println("Deserialization succeded");
-	            /*Iterator<Traveller> it=AllTravellers.iterator();
-	            while(it.hasNext()) {
-	            	System.out.println(it.next());
-	            }*/
 	        } 
 	        catch (IOException ioe) 
 	        {
@@ -118,6 +114,13 @@ public class mainclass {
 			menuAnswer=sc.nextInt();
 			switch(menuAnswer) {
 				case 1:
+					
+					System.out.println("Please enter your name.");
+					String name=sc.nextLine();
+					System.out.println("Please enter your age.");
+					int age=sc.nextInt();
+					sc.nextLine();
+					
 					System.out.println("Where are you now?Please give the name of your city followed by comma(,)and then the abbservation of your country.");
 					System.out.println("We want to calculate your current lat and lon.");
 					double currentlat=0;
@@ -146,13 +149,7 @@ public class mainclass {
 					    answer = sc.nextInt(); 
 					} while (!(answer==1 || answer==2 || answer==3));
 					sc.nextLine();
-					
-					System.out.println("Please enter your name.");
-					String name=sc.nextLine();
-					System.out.println("Please enter your age.");
-					int age=sc.nextInt();
-					sc.nextLine();
-					
+
 				    Traveller tr=new Traveller();
 					Tourist tour=new Tourist();
 					Business b=new Business();
